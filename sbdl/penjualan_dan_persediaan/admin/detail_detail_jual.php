@@ -6,13 +6,16 @@ include'../connection.php';
 <table border="1" cellpadding="0" cellspacing="0">
     <tr>
         <th>NO.</th>
-        <th>No Faktur</th>
-        <th>Kode Barang</th>
-        <th>Jumlah Jual</th>         
+        <th>Faktur</th>
+        <th>Nama Barang</th>
+        <th>Harga Barang</th>
+        <th>Jumlah Barang</th>
+        <th>Jumlah Jual</th>        
     </tr>
 <?php
+    $id = $_GET['faktur'];
     $no=1;
-    $query=("SELECT * FROM table_detail_jual WHERE kode_barang='$_GET[kode_barang]'");
+    $query=("SELECT * FROM view_detail_jual WHERE faktur=$id");
     $lihat = mysqli_query($con, $query) or die('Error, query failed. ' . mysqli_error());
     $jml_data=mysqli_num_rows($lihat);
     while($r=mysqli_fetch_array($lihat)){
@@ -20,7 +23,9 @@ include'../connection.php';
     <tr>
         <td><?php echo"$no.";?></td>
         <td><?php echo"$r[faktur]";?></td>
-        <td><?php echo"$r[kode_barang]";?></td>
+        <td><?php echo"$r[nama_barang]";?></td>
+        <td><?php echo"$r[harga_barang]";?></td>
+        <td><?php echo"$r[jumlah_barang]";?></td>
         <td><?php echo"$r[jumlah_jual]";?></td>
             
     </tr>
